@@ -1,25 +1,27 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const Item = (props) => {
-  const imageSrc = props.image;
+  const images = [
+    require("../../assets/rock.png"),
+    require("../../assets/paper.png"),
+    require("../../assets/scissors.png"),
+  ];
 
   return (
     <View style={styles.imageContainer}>
-      <TouchableOpacity>
-        <Image source={imageSrc} resizeMode="contain" style={styles.image} />
-      </TouchableOpacity>
+        <Image source={images[props.image]} resizeMode="contain" style={styles.image} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   imageContainer: {
-    height: 190,
     justifyContent: "center",
     alignItems: "center",
   },
   image: {
-    width: 180,
+    width: 140,
+    height: 140,
   },
 });
 
