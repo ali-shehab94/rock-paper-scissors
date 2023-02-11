@@ -7,6 +7,5 @@
  */
 export const calculateRandomIndex = (min, max) => {
     const RandomIndex = Math.floor(Math.random() * (max - min + 1) + min);
-    console.log("Random Index", RandomIndex);
     return RandomIndex;
 }

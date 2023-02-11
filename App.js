@@ -7,14 +7,17 @@ import Result from "./src/components/Result";
 import React, { useEffect, useState } from "react";
 import Something from "./src/components/Something";
 import { calculateRandomIndex } from "./src/services/RandomIndexGenerator";
+import ScoreBoard from "./src/components/ScoreBoard";
 
 export default function App() {
 
   const [userChoice, setUserChoice] = useState(0);
   const [computerChoice, setComputerChoice] = useState(0);
   const [choice, setChoice] = useState(false);
+  const [userScore, setUserScore] = useState(0);
+  const [computerScore, setComputerScore] = useState(0);
 
-  useEffect(()=>{
+  useEffect(()=> {
     setComputerChoice(calculateRandomIndex(1, 2));
   },[choice])
 
@@ -23,10 +26,15 @@ export default function App() {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="auto" />
       <View style={styles.container}>
+        <ScoreBoard UserScore={userScore} ComputerScore={computerScore}/>
         <DisplayChoice imageNumber={userChoice} />
         <Result 
         userChoice = {userChoice}
         computerChoice = {computerChoice}
+        updateUserScore={setUserScore}
+        updateComputerScore={setComputerScore}
+        computerScore={computerScore}
+        userScore={userScore}
         />
         <DisplayChoice imageNumber={computerChoice} />
         <View style={styles.options}>
