@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const Item = (props) => {
+const Item = ({image}) => {
   const images = [
     require("../../assets/rock.png"),
     require("../../assets/paper.png"),
@@ -9,7 +9,7 @@ const Item = (props) => {
 
   return (
     <View style={styles.imageContainer}>
-        <Image source={images[props.image]} resizeMode="contain" style={styles.image} />
+        <Image source={images[image]} resizeMode="contain" style={styles.image} />
     </View>
   );
 };

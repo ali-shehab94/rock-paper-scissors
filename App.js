@@ -4,33 +4,50 @@ import { StyleSheet, Text, View } from "react-native";
 import DisplayChoice from "./src/components/DisplayChoice";
 import TouchableItem from "./src/components/TouchableItem";
 import Result from "./src/components/Result";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Something from "./src/components/Something";
+import { calculateRandomIndex } from "./src/services/RandomIndexGenerator";
 
 export default function App() {
 
   const [userChoice, setUserChoice] = useState(0);
+  const [computerChoice, setComputerChoice] = useState(0);
+  const [choice, setChoice] = useState(false);
 
-  const getUserInput = (input) => {
-    console.log(input);
-  };
+  useEffect(()=>{
+    setComputerChoice(calculateRandomIndex(1, 2));
+  },[choice])
 
-  const getData = (data) => {
-    console.log("the data ", data)
-  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="auto" />
       <View style={styles.container}>
-        <DisplayChoice image={userChoice} />
-        <Something onPress={getData}/>
-        <Result />
-        <DisplayChoice image={userChoice} />
+        <DisplayChoice imageNumber={userChoice} />
+        <Result 
+        userChoice = {userChoice}
+        computerChoice = {computerChoice}
+        />
+        <DisplayChoice imageNumber={computerChoice} />
         <View style={styles.options}>
-          <TouchableItem image={0} userInput={getUserInput}/>
-          <TouchableItem image={1} />
-          <TouchableItem image={2} />
+          <TouchableItem
+            image={0}
+            userInput={setUserChoice}
+            settingChoice={setChoice}
+            choice={choice}
+          />
+          <TouchableItem
+            image={1}
+            userInput={setUserChoice}
+            settingChoice={setChoice}
+            choice={choice}
+          />
+          <TouchableItem
+            image={2}
+            userInput={setUserChoice}
+            settingChoice={setChoice}
+            choice={choice}
+          />
         </View>
       </View>
     </SafeAreaView>

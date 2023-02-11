@@ -1,15 +1,14 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Item from "./Item";
 
-const TouchableItem = ({ image, userInput }) => {
-  const selectItem = () => {
-    userInput(image);
-  };
-
+const TouchableItem = ({image, userInput, settingChoice, choice}) => {
   return (
     <TouchableOpacity
       style={styles.imageContainer}
-      onPress={selectItem}
+      onPress={() => {
+        settingChoice(!choice)
+        userInput(image);
+      }}
     >
       <Item image={image} />
     </TouchableOpacity>

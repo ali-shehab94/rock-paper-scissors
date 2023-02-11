@@ -1,22 +1,27 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { determineWinner } from "../services/DetermineWinner";
 
-const Result = (props) => {
+const Result = ({computerChoice, userChoice}) => {
 
-  const result = () => {
-    
-  }
+  const [result, setResult] = React.useState("");
+
+    React.useEffect(()=> {
+      const winner = determineWinner(userChoice, computerChoice);
+      setResult(winner);
+    }, [computerChoice, userChoice])
 
   return (
     <View style={styles.container}>
-      <Text>Result</Text>
+      <Text>{result}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: "20%",
+    height: "10%",
+    marginVertical: "5%",
     justifyContent: "center",
     borderWidth: 2,
     borderColor: "black",
