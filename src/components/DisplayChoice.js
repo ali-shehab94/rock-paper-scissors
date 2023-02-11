@@ -2,12 +2,12 @@ import { StyleSheet, Text, View } from "react-native"
 import TouchableItem from "./TouchableItem"
 import Item from "./Item"
 
-const DisplayChoice = () => {
+const DisplayChoice = ({imageNumber}) => {
   return (
     <View style={styles.container}>
-      <Item image={0} />
+      <Item image={imageNumber} />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
